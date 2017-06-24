@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="pentamania">
+  <meta http-equiv="x-ua-compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>あそこにシマウマちゃんがいるねゲーム</title>
+  <!-- <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet"> -->
+  <!-- <link href="https://fonts.googleapis.com/earlyaccess/roundedmplus1c.css" rel="stylesheet" /> -->
+  <style type="text/css">
+    body {
+      background-color: #78872e;
+    }
+  </style>
+</head>
+<body>
+<!-- <script src='http://cdn.rawgit.com/phi-jp/phina.js/v0.2.0/build/phina.min.js'></script> -->
+<script src='./lib/phina.min.js'></script>
+
+<script>
+'use strict';
+</script>
+<script src='./utils.js'></script>
+<script src='./config.js'></script>
+<script src='./components.js'></script>
+<script src='./titlescene.js'></script>
+<script src='./resultscene.js'></script>
+<script src='./mainscene.js'></script>
+
+<script>
+
+phina.globalize();
+phina.main(function() {
+  // IE対策
+  // var ua = phina.global.navigator.userAgent;
+  // if (ua.indexOf('Trident') > 0) {
+  //   alert('いんたーねっとえくすぷろーらー？だとうまく動かないことがあるかも！\nごめんね！');
+  // }
+
+  // webAudioが無効の場合orモバイルの場合、soundのロード自体取りやめる
+  if (!phina.util.Support.webAudio || phina.isMobile()) MUTE_SOUND = true;
+
+  var ASSET_PATH = "./assets/";
+  var assets = {
+    image: {
+      titleLogo: ASSET_PATH+'image/title-logo.png',
+      background: ASSET_PATH+'image/main-background.png',
+      genuine: ASSET_PATH+'image/shima.png',
+      tridot: ASSET_PATH+'image/tridot.png',
+      tora: ASSET_PATH+'image/tora.png',
+      // muji: ASSET_PATH+'muji.png',
+      tateshima: ASSET_PATH+'image/tate.png',
+    },
+    font: {
+      "Gloria Hallelujah": ASSET_PATH+"font/gloria-hallelujah-v8-latin-regular.woff"
+    }
+  };
+  if (MUTE_SOUND !== true) {
+    assets.sound = {
+      bgm: ASSET_PATH+"sound/砂上のエレスィ_nc133993.mp3",
+      snap: ASSET_PATH+"sound/ペンタックスシャッター_nc87905.mp3",
+      search: ASSET_PATH+"sound/search.mp3",
+    };
+  }
+
+  // 背景の動的生成
+  phina.asset.AssetManager.set('image', 'strippedBackground', generateStrippedRect(SCREEN_WIDTH, SCREEN_HEIGHT, 40));
+  // phina.asset.AssetManager.set('image', 'strippedBackground', generateStarPatternRect(SCREEN_WIDTH, SCREEN_HEIGHT, 10));
+
+  var app = GameApp({
+    startLabel: 'title',
+    // startLabel: 'main',
+    // startLabel: 'result',
+    assets: assets,
+    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT,
+    backgroundColor: "black",
+    // autoPause: true,
+  });
+
+  app.run();
+});
+
+</script>
+</body>
+</html>
