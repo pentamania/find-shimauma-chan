@@ -28,6 +28,7 @@ phina.display.Label.defaults = ({}).$safe({
 var GAME_VERSION = "1.0.0";
 var SCREEN_WIDTH = 600;
 var SCREEN_HEIGHT = 600;
+var DEBUG_MODE = false;
 
 var SPOT_LIGHT_RADIUS = SCREEN_WIDTH * 0.15;
 var GRID_UNIT = 12;
@@ -36,7 +37,9 @@ phina.namespace(function(){
   phina.global.TARGET_NUM = Math.min(maxTarget, 48);
 });
 var STAGE_NUM = 10;
-// STAGE_NUM = 1; // For debug
+if (DEBUG_MODE) {
+  STAGE_NUM = 1;
+}
 // var HASHTAGS = ["シマウマちゃん探しゲーム"];
 var HASHTAGS = ["あそこにシマウマちゃんがいるねゲーム"];
 var MUTE_SOUND = false;
@@ -58,6 +61,7 @@ var CLEAR_GRADES = [{
   border: 60000,
   grade: 'C',
   message: "へーき、へーき",
+  // message: "私たちならやれる！",
 },{
   border: Infinity,
   grade: 'D',

@@ -11,8 +11,17 @@ phina.namespace(function() {
       this.superInit(options);
       var gx = this.gridX;
       var gy = this.gridY;
-
       this.backgroundColor = "#5C7DCC";
+
+      // ハイスコア表記
+      var lsm = LocalStorageManager;
+      var bestRecord = lsm.getProp(null, "bestRecord") || 0;
+      // var tapCount = lsm.getProp(null, "tapCount") || 0;
+      // var bestRecordStr = (bestRecord) ? (bestRecord*0.001).toFixed(2) : " -- ";
+      var bestRecordStr = (bestRecord*0.001).toFixed(2);
+      var bestRecordLabelText = (bestRecord !== 0) ? "さいこうきろく: "+ bestRecordStr+ " びょう" : "";
+      // console.log(bestRecord)
+
       this.fromJSON({
         children: {
 
@@ -96,6 +105,19 @@ phina.namespace(function() {
             y: this.gridY.center(1),
           },
 
+          'bestRecordLabel': {
+            className: 'phina.display.Label',
+            arguments: {
+              text: bestRecordLabelText,
+              // text: "さいこうきろく: "+ bestRecordStr+ " びょう",
+              // text: "さいこうきろく "+ bestRecordStr+ " びょう"+" (タップかいすう： "+tapCount+")",
+              fill: "#7F1919",
+              stroke: '#FFFADD',
+              fontSize: 22,
+            },
+            x: this.gridX.center(),
+            y: this.gridY.span(11),
+          },
           // 'タップでスタート！'
           'startLabel': {
             className: 'GlowLabel',

@@ -16,8 +16,16 @@ phina.namespace(function() {
       var gx = this.gridX;
       var gy = this.gridY;
 
-      // console.log(options);
+      // スコア処理
+      var lsm = LocalStorageManager;
       var resultSecStr = (options.resultTime* 0.001).toFixed(2);
+      var oldRecord = lsm.getProp(null, 'bestRecord') || Infinity;
+      // 記録更新
+      if (options.resultTime < oldRecord) {
+        lsm.updateProp(null, 'bestRecord', options.resultTime);
+        lsm.updateProp(null, 'tapCount', options.tapCount);
+        lsm.updateProp(null, 'version', GAME_VERSION); // いる？
+      }
 
       // 評価
       var gradeText = "";
