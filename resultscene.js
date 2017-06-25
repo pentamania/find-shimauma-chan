@@ -30,11 +30,12 @@ phina.namespace(function() {
       // 評価
       var gradeText = "";
       CLEAR_GRADES.some(function(gradeData) {
-        gradeText = gradeData.grade +": "+ gradeData.message;
+        gradeText = gradeData.grade +":"+ gradeData.message;
         if (options.resultTime < gradeData.border) {
           return true;
         };
       });
+      // gradeText = "D: "+ CLEAR_GRADES[0].message;
 
       this.fromJSON({
         _isActive: false,

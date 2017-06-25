@@ -68,7 +68,7 @@ phina.namespace(function() {
     init: function(text, x, y) {
       this.superInit({
         text: text,
-        width: 280,
+        width: 350,
         height: 80,
         backgroundColor: 'transparent',
         fill: null,

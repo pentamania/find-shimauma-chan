@@ -37,17 +37,17 @@ phina.namespace(function(){
   phina.global.TARGET_NUM = Math.min(maxTarget, 48);
 });
 var STAGE_NUM = 10;
-if (DEBUG_MODE) {
-  STAGE_NUM = 1;
-}
 // var HASHTAGS = ["シマウマちゃん探しゲーム"];
 var HASHTAGS = ["あそこにシマウマちゃんがいるねゲーム"];
 var MUTE_SOUND = false;
-// MUTE_SOUND = true;
+if (DEBUG_MODE) {
+  MUTE_SOUND = true;
+  STAGE_NUM = 1;
+}
 var CLEAR_GRADES = [{
   border: 25000,
   grade: 'S',
-  message: "ア、アワワワ",
+  message: "ア、ア、アワワワ",
   // message: "やべーよ～"
 },{
   border: 35000,
@@ -60,8 +60,8 @@ var CLEAR_GRADES = [{
 },{
   border: 60000,
   grade: 'C',
-  message: "へーき、へーき",
-  // message: "私たちならやれる！",
+  message: "私たちならやれる！",
+  // message: "へーき、へーき",
 },{
   border: Infinity,
   grade: 'D',
